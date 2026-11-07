@@ -190,38 +190,21 @@ bindsym $mod+r mode "resize"
 #colors
 #color section !
 
-set $bgcolor    #3F2B65
-set $ibgcolor   #3F2B65
-set $textcolor  #D5C6E0
-set $ubgcolor   #ff0000
-
-#                       border          backround       text            indicator
-client.focused          $bgcolor        $bgcolor        $textcolor      $bgcolor
-client.unfocused        $ibgcolor       $ibgcolor       $textcolor      $ibgcolor
-client.focused_inactive $ibgcolor       $ibgcolor       $textcolor      $ibgcolor
-client.urgent           $ubgcolor       $ubgcolor       $textcolor      $ubgcolor
 
 bar {
-        status_command i3status -c /home/computer/.config/i3status/i3status.conf
-	colors {
-		background $bgcolor
-		separator #1A0D3C
-		#			border		backround	text
-		focused_workspace	$bgcolor	$bgcolor	$textcolor
-		inactive_workspace	$ibgcolor	$ibgcolor	$textcolor
-		urgent_workspace	$ubgcolor	$ubgcolor	$textcolor
-	}
+        status_command i3status -c /home/$USER/.config/i3status/i3status.conf
 }
 
 #Keyboard Layout
 exec_always setxkeybmap fr
 
 #Display Resolution
-exec_always xrandr --output DisplayPort-0 --mode 2560x1440 --rate 180 --right-of DisplayPort-1
+exec_always xrandr --output DP-1 --mode 2560x1440 --rate 180 --right-of DP-2
 
 #Wallpaper
-exec_always feh --bg-fill /home/computer/Pictures/walls/cachyos.png
-
+exec_always feh --bg-fill /home/user/Pictures/walls/arch.png
+#picom
+exec_always picom
 #Keybinding for i3lock
 bindsym $mod+F12 exec i3lock
 #keybinding other stuff
@@ -230,4 +213,6 @@ bindsym ctrl+$mod+f exec nemo
 #cursor reset fix
 exec xsetroot -cursor_name left_ptr
 
+#screenshot 
+bindsym --release $mod+Shift+p exec --no-startup-id maim -s ~/Pictures/screenshot-$(date +%F-%H%M%S).png
 
